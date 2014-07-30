@@ -1,6 +1,5 @@
-"""
-Cypher script taken from Python Recipes
-"""
+print "This is a simple cypher. Call 'shift_coder' and input a string and\
+ either 'code' or 'decode'."
 
 SHIFT = 1
 
