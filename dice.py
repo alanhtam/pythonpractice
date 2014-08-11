@@ -1,3 +1,5 @@
+import random
+
 print "This is a simple dice roll. Input number of sides and dice."
 
 results = []
@@ -11,3 +13,5 @@ def dice(sides, dice):
 			results.append(roll)
 			
 		print results
+
+	results[:] = []
