@@ -2,6 +2,7 @@
 
 board = ['','','','','','','','','']
 turn = 1
+end = 1
 
 print 
 """
@@ -36,9 +37,28 @@ def move():
 	else:
 		turn = 1
 
-		
+def win()
+ways = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
+	for i in ways:
+		if board[i[0]] == board[i[1]] == board[i[2]] != NULL:
+			winner = board[i[0]]
+			print winner, " is the winner!"
+			end = 0
+	if NULL not in board:
+		return 'TIE'
+	return None	
 		
 def main():
-	if turn = 1
-		then 
-
+	while end =1:
+		if turn = 1:
+			draw_board()
+			move()
+			board[move] = 'X'
+			win()
+		else:
+			draw_board()
+			move()
+			board[move] = 'O'
+			win()
+			
+main()
