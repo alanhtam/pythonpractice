@@ -3,6 +3,7 @@
 board = ['','','','','','','','','']
 turn = 1
 end = 1
+null = ''
 
 print 
 """
@@ -21,44 +22,46 @@ def draw_board():
     print "\t", "--------"
     print "\n\t", board[6], "|", board[7], "|", board[8], "\n"
 
-def move():
-	move = raw_input("Your move...")
-	if move not in ('0', '1', '2', '3', '4', '5', '6', '7', '8'):
+def player_move():
+	global a
+	a = raw_input("Your move...")
+	if a not in ('0', '1', '2', '3', '4', '5', '6', '7', '8'):
 		print "Choose a number between 0-8."
-		move = raw_input("Your move...")
-	elif board[int(move)] != NULL:
+		a = raw_input("Your move...")
+	elif board[int(a)] != null:
 		print "That space is already taken."
-		move = raw_input("Your move...")
+		a = raw_input("Your move...")
 	else:
-		return int(move)
+		a = int(a)
 
-	if turn = 1:
+	global turn
+	if turn == 1:
 		turn = 0
 	else:
 		turn = 1
 
-def win()
-ways = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
+def win():
+	ways = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
 	for i in ways:
-		if board[i[0]] == board[i[1]] == board[i[2]] != NULL:
+		if board[i[0]] == board[i[1]] == board[i[2]] != null:
 			winner = board[i[0]]
 			print winner, " is the winner!"
 			end = 0
-	if NULL not in board:
+	if null not in board:
 		return 'TIE'
 	return None	
 		
 def main():
-	while end =1:
-		if turn = 1:
+	while end == 1:
+		if turn == 1:
 			draw_board()
-			move()
-			board[move] = 'X'
+			player_move()
+			board[a] = 'X'
 			win()
 		else:
 			draw_board()
-			move()
-			board[move] = 'O'
+			player_move()
+			board[a] = 'O'
 			win()
 			
 main()
