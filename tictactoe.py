@@ -22,17 +22,19 @@ def draw_board():
     print "\t", "--------"
     print "\n\t", board[6], "|", board[7], "|", board[8], "\n"
 
+## Need to modify loop function so that it doesn't assign board position in cases of invalid input
 def player_move():
 	global a
-	a = raw_input("Your move...")
-	if a not in ('0', '1', '2', '3', '4', '5', '6', '7', '8'):
-		print "Choose a number between 0-8."
+	x = True
+	while x == True:
 		a = raw_input("Your move...")
-	elif board[int(a)] != null:
-		print "That space is already taken."
-		a = raw_input("Your move...")
-	else:
-		a = int(a)
+		if a not in ('0', '1', '2', '3', '4', '5', '6', '7', '8'):
+			print "Choose a number between 0-8."
+		elif board[int(a)] != null:
+			print "That space is already taken."
+		else:
+			a = int(a)
+			x = False
 
 	global turn
 	if turn == 1:
