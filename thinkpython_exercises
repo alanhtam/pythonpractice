@@ -1,0 +1,469 @@
+# Exercise 3.3. Python provides a built-in function called len that returns
+# the length of a string, so the value of len('allen) is 5. Write a
+# function named right_justify that takes a string named s as a parameter
+# and prints the string with enough leading spaces so that the last letter of
+# the string is in column 70 of the display.
+
+def right_justify(s):
+    n = len(s)
+    print ' '*(69-n)+s
+
+right_justify('hello')
+
+# Exercise 3.4. A function object is a value you can assign to a variable or
+# pass as an argument. For example, print_spam is a function that takes a
+# function object as an argument and calls it twice:
+# def print_spam():
+#   print 'spam'
+#   print 'spam'
+
+# 1. Type this example into a script and test it.
+
+def print_spam():
+    print 'spam'
+    print 'spam'
+
+print_spam()
+
+# 2. Modify print_spam so that it takes two arguments, a function object and a
+# value, and calls the function twice, passing the value as an argument.
+
+# make printf function as print is a statement that cannot be passed
+def printf(x):
+    print x
+
+def do_twice(f, x):
+    f(x)
+    f(x)
+
+do_twice(printf, 'spam')
+
+# 3. Write a more general version of print_spam, print_twice, that takes a
+# string as a parameter and prints it twice.
+
+def print_twice(x):
+    print x
+    print x
+
+print_twice('foo')
+
+# 4. Use the modified version of print_spam to call print_twice twice,
+# passing 'spam' as an argument.
+
+do_twice(print_twice, 'spam')
+
+# 5. Define a new function called do_four that takes a function object and a
+# value and calls the function four times, passing the value as a parameter.
+# There should be only two statements in the body of this function, not four.
+
+def do_four(f, x):
+    f(x)
+    f(x)
+    f(x)
+    f(x)
+
+do_four(printf, 'foo')
+
+# Exercise 5.3 Fermat's Last Theorem says that there are no positive integers
+# a, b, and c such that a ^ n + b ^ n = c ^ n for any values of n > 2.
+
+# 1. Write a function named check_fermat that takes four parameters--a, b, c, n
+# --and that checks to see if Fermat's theorem holds. If n is greater than 2
+# and it turns out to be true that a ^ n + b ^ n = c ^ n the program should
+# print, 'Holy smokes, Fermat was wrong! Otherwise the program should print,
+# 'No, that doesn't work.'
+
+def check_fermat(a, b, c, n):
+    if a^n+b^n==c^n:
+        print 'Holy smokes, Fermat was wrong!'
+    else:
+        print 'No, that doesn\'t work'
+
+# 2. Write a function that prompts the user to input values for a, b, c, n,
+# converts them to integers, and uses check_fermat to check whether they
+# violate Fermat's theorem.
+
+def master(a, b, c, n):
+    a_int = int(a)
+    b_int = int(b)
+    c_int = int(c)
+    n_int = int(n)
+    check_fermat(a_int, b_int, c_int, n_int)
+
+# Exercise 5.4. If you are given three sticks, you may or may not be able to
+# arrange them in a triangle. For example, if one of the sticks is 12 inches
+# long and the other two are one inch long, it is clear that you will not be
+# able to get the short sticks to meet in the middle. For any three lengths,
+# there is a simple test to see if it is possible to form a triangle: If any
+# of the three lengths is greater than the sum of the other two, then you
+# cannot form a triangle. Otherwise, you can. (If the sum of two lengths
+# equals the third, they form what is called a 'degenerate' triangle.)
+
+# 1. Write a function named is_triangle that takes three integers as arguments,
+# and that prints either 'Yes' or 'No' depending on whether you can or cannot
+# form a triangle from sticks with the given lengths.
+
+def is_triangle(a,b,c):
+    if a+b<c or a+c<b or b+c<a:
+        print 'No'
+    else:
+        print 'Yes'
+
+# 2. Write a function that prompts the user to input three stick lengths,
+# converts them to integers, and uses is_triangle to check whether sticks with
+# the given lengths can form a triangle.
+
+def master(a,b,c):
+    a_int = int(a)
+    b_int = int(b)
+    c_int = int(c)
+    is_triangle(a_int, b_int, c_int)
+
+# Exercise 5.5 Read the following function and see if you can figure out what
+# it does.
+
+from swampy.TurtleWorld import *
+
+world = TurtleWorld()
+bob = Turtle()
+
+def draw(t, length, n):
+    if n == 0:
+        return
+    angle = 50
+    fd(t, length*n)
+    lt(t, angle)
+    draw(t, length, n-1)
+    rt(t, 2*angle)
+    draw(t, length, n-1)
+    lt(t, angle)
+    bk(t, length*n)
+
+draw(bob, 5, 10)
+
+# Exercise 5.6. The Koch curve is a fractal that looks something like
+# Figure 5.2. To draw a Koch curve with length x, all you have to do is
+# 1. Draw a Koch curve with length x/3.
+# 2. Turn left 60 degrees.
+# 3. Draw a Koch curve with length x/3.
+# 4. Turn right 120 degrees.
+# 5. Draw a Koch curve with length x/3.
+# 6. Turn left 60 degrees.
+# 7. Draw a Koch curve with length x/3.
+# The exception is if x is less than 3: in that case, you can just draw a
+# straight line with length x.
+
+# 1. Write a function called koch that takes a turtle and a length as
+# parameters, and that uses the turtle to draw a Koch curve with the given
+# length.
+
+from swampy.TurtleWorld import *
+
+world = TurtleWorld()
+bob = Turtle()
+
+def koch(t, length):
+    if length < 3:
+        fd(t, length)
+    else:
+        koch(t, length/3)
+        lt(t, 60)
+        koch(t, length/3)
+        rt(t, 120)
+        koch(t, length/3)
+        lt(t, 60)
+        koch(t, length/3)
+
+koch(bob, 30)
+
+# 2. Write a function called snowflake that draws three Koch curves to make the
+# outline of a snowflake.
+# Solution: http://thinkpython.com/code/koch.py
+
+from swampy.TurtleWorld import *
+
+world = TurtleWorld()
+bob = Turtle()
+bob.delay = 0
+
+def koch(t, length):
+    if length < 3:
+        fd(t, length)
+    else:
+        koch(t, length/3)
+        lt(t, 60)
+        koch(t, length/3)
+        rt(t, 120)
+        koch(t, length/3)
+        lt(t, 60)
+        koch(t, length/3)
+
+def snowflake(t, length):
+    for i in range(3):
+        koch(t, length)
+        rt(t, 120)
+
+snowflake(bob, 300)
+
+# Draw a stack diagram for the following program. What does the program print?
+
+def b(z):
+    prod = a(z, z)
+    print z, prod
+    return prod
+
+def a(x, y):
+    x = x+1
+    return x*y
+
+def c(x, y, z):
+    total = x+y+z
+    square = b(total)**2
+    return square
+
+x = 1
+y = x+1
+print c(x, y+3, x+y)
+
+# Exercise 6.5. The Ackermann function, A(m, n), is defined:
+
+# A(m,n) = {n+1                 if m=0
+#          {A(m-1,1)            if m>0 and n=0
+#          {A(m-1, A(m,n-1)     if m>0 and n>0
+
+# See http://en.wikipedia.org/wiki/Ackermann_function. Write a function named
+# ack that evaluates Ackermann's function. Use your function to evaluate
+# ack(3, 4), which should be 125. What happens for larger values of m and n?
+
+def ack(m, n):
+    if m==0:
+        return n+1
+    elif m>0 and n==0:
+        return ack(m-1,1)
+    elif m>0 and n>0:
+        return ack(m-1, ack(m,n-1))
+    else:
+        print 'This is outside the scope of Ackermann\'s function!'
+
+ack(3, 4)
+
+# Exercise 6.6. A palindrome is a word that is spelled the same backward and
+# forward, like "noon" and "redivider". Recursively, a word is a palindrome if
+# the first and last letters are the same and the middle is a palindrome.
+
+# The following are functions that take a string argument and return the first,
+# last, and middle letters:
+
+def first(word):
+    return word[0]
+
+def last(word):
+    return word[-1]
+
+def middle(word):
+    return word[1:-1]
+
+# 1. What happens if you call middle with a string with two letters? One
+# letter? What about the empty string, which is written '' and contains no
+# letters?
+
+middle('hi')
+middle('I')
+middle('')
+
+# 2. Write a function called is_palindrome that takes a string argument and
+# returns True if it is a palindrome and False otherwise. Remember that you
+# can use the built-in function len to check the length of a string.
+
+def is_palindrome(string):
+    bward_string = ''
+    length = range(1,len(string)+1)
+    for i in length:
+        bward_string += string[-i]
+
+    if string == bward_string:
+        return True
+    else:
+        return False
+
+# book solution:
+
+def first(word):
+    """Returns the first character of a string."""
+    return word[0]
+
+def last(word):
+    """Returns all but the first character of a string."""
+    return word[-1]
+
+def middle(word):
+    """Returns all but the first and last characters of a string."""
+    return word[1:-1]
+
+def is_palindrome(word):
+    """Returns True if word is a palindrome."""
+    if len(word) <= 1:
+        return True
+    if first(word) != last(word):
+        return False
+    return is_palindrome(middle(word))
+
+# Exercise 6.7. A number, a, is a power of b if it is divisible by b and a/b
+# is a power of b. Write a function called is_power that takes parameters
+# a and b and returns True if a is a power of b. Note: you will have to think
+# about the base case.
+
+def is_power(a, b):
+    if a==b or a==1:
+        return True
+    return a%b==0 and is_power(a/b, b)
+
+# Exercise 6.8. The greatest common divisor (GCD) of a and b is the largest
+# number that divides both of them with no remainder. One way to find the GCD
+# of two numbers is based on the observation that if r is the remainder when
+# a is divided by b, then gcd(a, b) = gcd(b,r). As a base case, we can use
+# gcd(a, 0) = a.
+
+# Write a function called gcd that takes parameters a and b and returns their
+# greatest common divisor.
+
+def gcd(a, b):
+    while b != 0:
+        (a, b) = (b, a%b)
+    return a
+
+# Exercise 7.1. Rewrite the function print_n from section 5.8 using iteration
+# instead of recursion.
+
+#Recursion
+def print_n(s, n):
+    if n <= 0:
+        return
+    print s
+    print_n(s, n-1)
+
+#Iteration
+def print_n(s, n):
+    while n > 0:
+        print s
+        n = n-1
+
+# Exercise 7.2. Encapsulate this loop in a function called square_root that
+# takes a as a parameter, chooses a reasonable value of x, and returns an
+# estimate of the square root of a.
+
+def square_root(a):
+    x=3
+    while True:
+        y = (x+a/x)/2
+        if abs(y-x) < .0000001:
+            print x
+            break
+        x = y
+
+# Exercise 7.3. To test the square root algorithm in this chapter, you could
+# compare it with math.sqrt. Write a function named test_square_root that
+# prints a table where the first column is a number, a; the second column is
+# the square root of a computed with the function from Section 7.5; the third
+# column is the square root computed by math.sqrt; the fourth column is the
+# absolute value of the difference between the two estimates
+
+import math
+
+def test_square_root(a):
+    x=3
+    while True:
+        y = (x+a/x)/2
+        if abs(y-x) < .0000001:
+            print a, x, sqrt(a), abs(math.sqrt(a)-x)
+            break
+        x = y
+
+test_square_root(9)
+
+# Exercise 7.4. The built-in function eval takes a string and evaluates it
+# using the Python interpreter. Write a function called eval_loop that
+# iteratively prompts the user, takes the resulting input and evaluates it
+# using eval, and prints the result. It should continue until the user enters
+# 'done', and then return the value of the last expression it evaluated.
+
+def eval_loop():
+    while True:
+        x = raw_input('What would you like to evaluate?')
+        if x=='done':
+            print eval(y)
+            break
+        print eval(x)
+        y = x
+
+# The mathematician Srinivasa Ramanujan found an infinite series that can be
+# used to generate a numerical approximation of pi. Write a function called
+# estimate_pi that uses this formula to compute and return an estimate of pi.
+# It should use a while loop to compute terms of the summation until the last
+# term is smaller than 1e-15 (which is Python notation for 10^-15). You can
+# check by comparing it to math.pi.
+
+def factorial(n):
+    if n==1:
+        return 1
+    else:
+        recurse = factorial(n-1)
+        results = n*recurse
+        return result
+
+def estimate_pi():
+    total = 0
+    k = 0
+    factor = 2 * math.sqrt(2) / 9801
+    while True:
+        num = factorial(4*k) * (1103 + 26390*k)
+        den = factorial(k)**4 * 396**(4*k)
+        term = factor * num / den
+        total += term
+
+        if abs(term) < 1e-15: break
+        k += 1
+
+    return 1 / total
+
+print estimate_pi()
+
+
+# Write a function that takes a string and displays the letters backward one
+# line at a time.
+
+def back_string(string):
+    index = 1
+    while index <= len(string):
+        letter = string[-index]
+        print letter
+        index += 1
+
+# prefixes = 'JKLMNOPQ'
+# for letter in prefixes:
+#   print letter + suffix
+
+# Exercise 8.2. Modify program to fix 'Ouack' and 'Quack' output.
+def fixed_string():
+    prefixes = 'JKLMNOPQ'
+    suffix = 'ack'
+    for letter in prefixes:
+        if letter in ['O','Q']:
+            print letter + 'u' + suffix
+        else:
+            print letter + suffix
+
+# Exercise 8.3. Given that fruit is a string, what does fruit[:] mean?
+fruit = 'string'
+fruit[:]
+
+# Exercise 8.4. Modify find so that it has a third parameter, the index in
+# word where it should start looking.
+
+def find(word, letter, start):
+    index = 0
+    while index < len(word[start:]):
+        if word[index]==letter:
+            return index
+        index += 1
+    return -1
