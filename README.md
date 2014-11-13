@@ -12,4 +12,4 @@ Running list of completed projects:
 * unit calculator - challenge 173 from /r/dailyprogrammer (easy)
  
 Ongoing:
-* thinkpython textbook
+* Think Python textbook
