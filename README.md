@@ -10,3 +10,6 @@ Running list of completed projects:
 * dice
 * tictactoe
 * unit calculator - challenge 173 from /r/dailyprogrammer (easy)
+ 
+Ongoing:
+* thinkpython textbook
