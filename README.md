@@ -13,3 +13,4 @@ Running list of completed projects:
  
 Ongoing:
 * Think Python textbook
+* Codewars: http://www.codewars.com/users/alanhtam
