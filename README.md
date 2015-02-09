@@ -5,7 +5,7 @@ The purpose of this repository is to track my personal python learning. The solu
 though some may be derived from solutions found on stack or elsewhere. I've attempted to attribute any influence from other
 sources within the code.
 
-Running list of completed projects:
+Running list of completed exercises:
 * cypher
 * dice
 * tictactoe
