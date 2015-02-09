@@ -10,6 +10,7 @@ Running list of completed exercises:
 * dice
 * tictactoe
 * unit calculator - challenge 173 from /r/dailyprogrammer (easy)
+* look and say - challenge 180 from /r/dailyprogrammer (easy)
  
 Ongoing:
 * Think Python textbook
