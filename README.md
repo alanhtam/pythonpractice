@@ -9,8 +9,8 @@ Running list of completed exercises:
 * cypher
 * dice
 * tictactoe
-* unit calculator - challenge 173 from /r/dailyprogrammer (easy)
-* look and say - challenge 180 from /r/dailyprogrammer (easy)
+* unit calculator
+* look and say
  
 Ongoing:
 * Think Python textbook
